@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPO Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+       <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        
+        nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 80%;
+            max-width: 800px;
+            z-index: 10;
+        }
+        
+        .slide-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 10;
+        }
+        
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .control-btn.active {
+            background-color: white;
+        }
+        
+        /* Slider Navigation Arrows */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .nav-arrow {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .nav-arrow:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 2rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .nav-links {
+                display: none; /* Consider mobile menu implementation */
+            }
+        }
+         /* Custom styles */
+        .hero-section1 {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .feature-box {
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid #e9ecef;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+        
+        .img-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .img-container img {
+            transition: transform 0.5s ease;
+        }
+        
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+
+
+         /* Double underline style */
+        .double-underline {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .double-underline::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                #3498db 20%, 
+                #3498db 80%, 
+                transparent 100%);
+        }
+        
+        .double-underline::before {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 20%;
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                #3498db 30%, 
+                #3498db 70%, 
+                transparent 100%);
+        }
+        
+        /* Optional styling for the heading */
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        /* Alternative style with solid lines */
+        .double-underline-solid {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .double-underline-solid::after,
+        .double-underline-solid::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #e74c3c;
+        }
+        
+        .double-underline-solid::after {
+            bottom: 2px;
+        }
+        
+        .double-underline-solid::before {
+            bottom: 0;
+        }
+
+         .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .image-box {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .image-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .image-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-box:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-content {
+            padding: 20px;
+            background: white;
+        }
+        
+        .box-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .aligned-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .aligned-text {
+            flex: 1;
+        }
+        
+        .last-image-box {
+            flex: 0 0 40%;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 992px) {
+            .aligned-container {
+                flex-direction: column;
+            }
+            
+            .last-image-box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 1.6rem;
+            }
+        }
+
+         .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-heading:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+        }
+        
+        .content-box {
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: none;
+            transition: all 0.3s ease;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .box-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color:  #038158;
+        }
+        
+        .box-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .box-btn {
+            background: linear-gradient(to right,  #038158);
+            border: none;
+            padding: 8px 20px;
+            margin-top: 15px;
+        }
+        
+        .box-btn:hover {
+            background: linear-gradient(to right,  #038158);
+        }
+        
+        .aligned-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .aligned-text {
+            flex: 1;
+        }
+        
+        .donate-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            padding: 10px 30px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        .donate-btn:hover {
+            background: linear-gradient(to right, #e83a5f, #e83a1b);
+        }
+        
+        @media (max-width: 768px) {
+            .aligned-container {
+                flex-direction: column;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+        } 
+
+
+         .footer {
+            background-color: black;
+            color: #ecf0f1;
+            padding: 60px 0 30px;
+            font-size: 0.95rem;
+        }
+        
+        .footer-logo {
+            max-height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-heading:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background:  #038158;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #34495e;
+            color: #fff;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook:hover {
+            background-color: #3b5998;
+        }
+        
+        .twitter:hover {
+            background-color: #1da1f2;
+        }
+        
+        .tiktok:hover {
+            background-color: #000;
+        }
+        
+        .youtube:hover {
+            background-color: #ff0000;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .newsletter-btn {
+            background-color:  #038158;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color:  #038158;
+        }
+
+         .partners-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right,  #038158);
+        }
+        
+        .partners-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .partners-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll 30s linear infinite;
+            width: calc(200px * 12); /* Adjust based on number of items */
+        }
+        
+        .partner-logo {
+            flex: 0 0 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-180px * 6)); /* Half of total width */
+            }
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color:  #038158;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .control-btn:hover {
+            background: #4e54c8;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .partners-track {
+                gap: 20px;
+                animation-duration: 20s;
+            }
+            
+            .partner-logo {
+                flex: 0 0 140px;
+                height: 80px;
+            }
+        }
+         /* Floating WhatsApp Button Styles */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+            animation-play-state: paused;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* Tooltip text */
+        .whatsapp-tooltip {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            right: 50%;
+            transform: translateX(50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        
+        .whatsapp-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .whatsapp-float:hover .whatsapp-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Page content for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            height: 2000px; /* For demonstration scroll */
+        }
+        
+        .content-section {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+
+              .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 50vh; /* Half of viewport height */
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-banner:hover .hero-image {
+            transform: scale(1.03);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .hero-heading {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+        
+        .hero-subheading {
+            color: white;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            max-width: 800px;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-heading {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subheading {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-heading {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subheading {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-banner {
+                height: 60vh; /* Slightly taller on mobile */
+            }
+            
+            .hero-heading {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subheading {
+                font-size: 1rem;
+            }
+        }
+
+          .service-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right,  #038158);
+        }
+        
+        .service-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            background: white;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .card-text {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .icon-container {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg,  #038158);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -40px auto 20px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+        }
+        
+        .service-icon {
+            color: white;
+            font-size: 30px;
+        }
+        
+        .btn-service {
+            background: linear-gradient(to right,  #038158);
+            border: none;
+            border-radius: 50px;
+            padding: 8px 25px;
+            color: white;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .btn-service:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(78, 84, 200, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .card-image {
+                height: 180px;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .contact-section {
+            padding: 80px 0;
+        }
+        .contact-info {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        .contact-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 60px;
+            height: 3px;
+            background:  #038158;
+            bottom: 0;
+            left: 0;
+        }
+        .contact-info-item {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            background:  #038158;
+            color: #fff;
+            text-align: center;
+            border-radius: 50%;
+            line-height: 50px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .contact-info-text h4 {
+            color:  #038158;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .contact-info-text p {
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background:  #038158;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background: #038158;
+            transform: translateY(-3px);
+        }
+        .form-control:focus {
+            border-color:  #038158;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .btn-primary {
+            background-color:  #038158;
+            border-color:  #038158;
+            padding: 10px 25px;
+        }
+        .btn-primary:hover {
+            background-color:  #038158;
+            border-color:  #038158;
+        }
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+        }
+         
+        .donate-button {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .donate-button:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-below {
+            padding: 40px;
+            text-align: center;
+        }
+
+     /* Style for the floating donation container */
+        .floating-donation {
+            position: fixed;
+            left: 20px;  /* Changed from right to left */
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        /* Donation button style */
+        .donation-button {
+            width: 60px;
+            height: 60px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .donation-button:hover {
+            background-color: #ff5252;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tooltip style - now positioned to the right of the button */
+        .donation-tooltip {
+            position: absolute;
+            left: 70px;  /* Changed from right to left */
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Adjusted tooltip arrow to point left */
+        .donation-tooltip::after {
+            content: "";
+            position: absolute;
+            right: 100%;  /* Changed from left to right */
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #333 transparent transparent;  /* Adjusted arrow direction */
+        }
+
+        .floating-donation:hover .donation-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="mainNav">
+        <div class="nav-container" style="margin-left: 2%;">
+            
+            <a href="#" class="logo">  <img src="Images/logo (2).jpg " height="100px" width="100px"  alt="Mthombo' Ngashi Logo"></a>
+            <ul class="nav-links">
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="Our work.html">OUR PROGRAMS</a></li>
+                <li><a href="About-us.html">ABOUT</a></li>
+                <li><a href="Blog.html">BLOG</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+    <body>
+    <!-- Full-Width Half-Height Hero Banner -->
+    <div class="hero-banner">
+        <!-- Replace with your image -->
+        <img src="Images/IMG-20240930-WA0010.jpg" 
+             alt="Hero Banner" class="hero-image">
+        <div class="hero-overlay">
+            <h1 class="hero-heading">Contact Us</h1>
+            <p class="hero-subheading"></p>
+        </div>
+    </div>
+<section class="contact-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" style=" font-family:  Times New Roman;">Connect with us</h2>
+                    <p class="lead"  style=" font-family:  Times New Roman;">We'd love to hear from you. Get in touch with us using the information below or send us a message.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Contact Information Column -->
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h3 class="mb-4"  style=" font-family:  Times New Roman;"><strong>Our Contact Information</strong></h3>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h4  style=" font-family:  Times New Roman;">Address</h4>
+                                <p  style=" font-family:  Times New Roman;">Jeppestown Train Station, <br>John Page and Main Street in Jeppestown<br>Johannesburg</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h4  style=" font-family:  Times New Roman;">Phone</h4>
+                                <p style=" font-family:  Times New Roman;"> 073 319 0053<br>065 694 1153</p>
+                            </div>
+                        </div>
+                       
+                        <p><i class="fas fa-envelope me-2"></i></p>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h4 style=" font-family:  Times New Roman;">Email</h4>
+                                <p style=" font-family:  Times New Roman;">admin@mthombngashi.co.za<br></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <h4 style=" font-family:  Times New Roman;">Business Hours</h4>
+                                <p style=" font-family:  Times New Roman;">Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 08:00 AM - 12:00 PM<br>Sunday: 10:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links mt-4">
+                            <h5 class="mb-3" style=" font-family:  Times New Roman;">Follow Us</h5>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        
+                        <div class="map-container mt-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.538401704012!2d-122.41941558468236!3d37.77492997975938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form Column -->
+                <div class="col-lg-7">
+                    <div class="contact-form">
+                        <h3 class="mb-4" style=" font-family:  Times New Roman;"><strong>Send Us a Message</strong></h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Subscribe to our newsletter
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary" style=" font-family:  Times New Roman;">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+
+    <script>
+        // Optional JavaScript for enhanced behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappBtn = document.querySelector('.whatsapp-float');
+            
+            // Pause animation when hovering
+            whatsappBtn.addEventListener('mouseenter', function() {
+                this.style.animationPlayState = 'paused';
+            });
+            
+            whatsappBtn.addEventListener('mouseleave', function() {
+                this.style.animationPlayState = 'running';
+            });
+            
+            // Hide/show based on scroll direction (optional)
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    whatsappBtn.style.transform = 'translateY(20px)';
+                } else {
+                    // Scrolling up
+                    whatsappBtn.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+        });
+    </script>
+
+
+
+
+    <!-- Floating donation button -->
+    <div class="floating-donation">
+           <a href="Donation.html"  button class="donation-button" onclick="donate()">❤️</button></a>
+        <div class="donation-tooltip">Donate for our people!</div>
+    </div>
+
+    <script>
+        // Function to handle donation button click
+        function donate() {
+            alert('Thank you for your support! Redirecting to donation page...');
+            // Replace with your actual donation link
+            // window.location.href = 'https://yourwebsite.com/donate';
+        }
+
+        // Optional: Make the button more dynamic
+        document.querySelector('.donation-button').addEventListener('mouseenter', function() {
+            // You can add additional effects here
+        });
+
+        document.querySelector('.donation-button').addEventListener('mouseleave', function() {
+            // Reset effects here
+        });
+
+        // Optional: Add click animation
+        document.querySelector('.donation-button').addEventListener('click', function() {
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
+        });
+    </script>
+
+       <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo and About -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <img src="Images/logo (2).jpg" alt="Company Logo"  class="footer-logo">
+                    <p style=" font-family:  Times New Roman;">Empowering communities through sustainable development initiatives since 2010. Our mission is to create lasting positive change.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="footer-heading" style=" font-family:  Times New Roman;">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="About-us.html">About Us</a></li>
+                        <li><a href="Volunteer.html">Volunteer</a></li>
+                        <li><a href="Learn.html">Learn More</a></li>
+                        <li><a href="Donation.html">Donate now</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                         <li><a href="Blog.html">Blog</a></li>
+                            <li><a href="Our work.html">Our programs</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Programs -->
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="footer-heading" style=" font-family:  Times New Roman;">Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="">Food Security</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Women Empowerment</a></li>
+                        <li><a href="#">Art & Music</a></li>
+                     
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="footer-heading" style=" font-family:  Times New Roman;">Newsletter</h4>
+                    <p>Subscribe to our newsletter to receive updates on our projects and impact.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <div class="mt-4">
+                        <h4 class="footer-heading" style=" font-family:  Times New Roman;">Contact Us</h4>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Jeppestown Train Station, John Page and Main Street in Jeppestown, Johannesburg</p>
+                        <p><i class="fas fa-phone me-2"></i> 073 319 0053/ 065 694 1153</p>
+                        <p><i class="fas fa-envelope me-2"></i>admin@mthombngashi.co.za</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-bottom">
+                        <p class="mb-0">&copy; 2025 Mthombo’ngashi NPO . All Rights Reserved. | <a href="#" style="color:  #038158;">Privacy Policy</a> | <a href="#" style="color: #3498db;">Terms of Service</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const slides = document.querySelectorAll('.slide');
+            const controlBtns = document.querySelectorAll('.control-btn');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            const nav = document.getElementById('mainNav');
+            
+            let currentSlide = 0;
+            const slideCount = slides.length;
+            
+            // Initialize slider
+            function goToSlide(index) {
+                if (index < 0) index = slideCount - 1;
+                if (index >= slideCount) index = 0;
+                
+                slider.style.transform = `translateX(-${index * 100}%)`;
+                currentSlide = index;
+                
+                // Update control buttons
+                controlBtns.forEach((btn, i) => {
+                    btn.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            // Auto slide change
+            let slideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+            
+            // Control buttons
+            controlBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    goToSlide(index);
+                    slideInterval = setInterval(() => {
+                        goToSlide(currentSlide + 1);
+                    }, 5000);
+                });
+            });
+            
+            // Navigation arrows
+            prevBtn.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(currentSlide - 1);
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(currentSlide + 1);
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+            
+            // Pause auto-slide when hovering over slider
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(slideInterval);
+            }, {passive: true});
+            
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            }, {passive: true});
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    goToSlide(currentSlide + 1); // Swipe left
+                }
+                if (touchEndX > touchStartX + 50) {
+                    goToSlide(currentSlide - 1); // Swipe right
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

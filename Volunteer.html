@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPO Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        
+        nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 80%;
+            max-width: 800px;
+            z-index: 10;
+        }
+        
+        .slide-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 10;
+        }
+        
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .control-btn.active {
+            background-color: white;
+        }
+        
+        /* Slider Navigation Arrows */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .nav-arrow {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .nav-arrow:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 2rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .nav-links {
+                display: none; /* Consider mobile menu implementation */
+            }
+        }
+         /* Custom styles */
+        .hero-section1 {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .feature-box {
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid #e9ecef;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color:  #038158;
+        }
+        
+        .img-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .img-container img {
+            transition: transform 0.5s ease;
+        }
+        
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+
+
+         /* Double underline style */
+        .double-underline {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .double-underline::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                #3498db 20%, 
+                #3498db 80%, 
+                transparent 100%);
+        }
+        
+        .double-underline::before {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 20%;
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                #3498db 30%, 
+                #3498db 70%, 
+                transparent 100%);
+        }
+        
+        /* Optional styling for the heading */
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        /* Alternative style with solid lines */
+        .double-underline-solid {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .double-underline-solid::after,
+        .double-underline-solid::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #e74c3c;
+        }
+        
+        .double-underline-solid::after {
+            bottom: 2px;
+        }
+        
+        .double-underline-solid::before {
+            bottom: 0;
+        }
+
+         .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .image-box {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .image-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .image-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-box:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-content {
+            padding: 20px;
+            background: white;
+        }
+        
+        .box-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .aligned-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .aligned-text {
+            flex: 1;
+        }
+        
+        .last-image-box {
+            flex: 0 0 40%;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 992px) {
+            .aligned-container {
+                flex-direction: column;
+            }
+            
+            .last-image-box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 1.6rem;
+            }
+        }
+
+         .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-heading:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right,  #038158);
+        }
+        
+        .content-box {
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: none;
+            transition: all 0.3s ease;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .box-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color:  #038158;
+        }
+        
+        .box-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .box-btn {
+            background: linear-gradient(to right,  #038158);
+            border: none;
+            padding: 8px 20px;
+            margin-top: 15px;
+        }
+        
+        .box-btn:hover {
+            background: linear-gradient(to right,  #038158);
+        }
+        
+        .aligned-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .aligned-text {
+            flex: 1;
+        }
+        
+        .donate-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            padding: 10px 30px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        .donate-btn:hover {
+            background: linear-gradient(to right, #e83a5f, #e83a1b);
+        }
+        
+        @media (max-width: 768px) {
+            .aligned-container {
+                flex-direction: column;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+        } 
+
+
+         .footer {
+            background-color: black;
+            color: #ecf0f1;
+            padding: 60px 0 30px;
+            font-size: 0.95rem;
+        }
+        
+        .footer-logo {
+            max-height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-heading:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background:  #038158;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color:  white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color:  #038158;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #34495e;
+            color: #fff;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook:hover {
+            background-color: #3b5998;
+        }
+        
+        .twitter:hover {
+            background-color: #1da1f2;
+        }
+        
+        .tiktok:hover {
+            background-color: #000;
+        }
+        
+        .youtube:hover {
+            background-color: #ff0000;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .newsletter-btn {
+            background-color:  #038158;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color:  #038158;
+        }
+
+         .partners-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right,  #038158);
+        }
+        
+        .partners-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .partners-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll 30s linear infinite;
+            width: calc(200px * 12); /* Adjust based on number of items */
+        }
+        
+        .partner-logo {
+            flex: 0 0 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-180px * 6)); /* Half of total width */
+            }
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: #4e54c8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .control-btn:hover {
+            background: #4e54c8;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .partners-track {
+                gap: 20px;
+                animation-duration: 20s;
+            }
+            
+            .partner-logo {
+                flex: 0 0 140px;
+                height: 80px;
+            }
+        }
+         /* Floating WhatsApp Button Styles */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+            animation-play-state: paused;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* Tooltip text */
+        .whatsapp-tooltip {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            right: 50%;
+            transform: translateX(50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        
+        .whatsapp-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .whatsapp-float:hover .whatsapp-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Page content for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            height: 2000px; /* For demonstration scroll */
+        }
+        
+        .content-section {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/IMG-20250602-WA0008.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .divider {
+            border-top: 2px solid white;
+            width: 100px;
+            margin: 20px auto;
+        }
+        
+        .opportunity-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .btn-volunteer {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-volunteer:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .impact-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            margin-top: 50px;
+        }
+        
+        .impact-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .testimonial-card {
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .volunteer-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+         
+        .donate-button {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .donate-button:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-below {
+            padding: 40px;
+            text-align: center;
+        }
+
+     /* Style for the floating donation container */
+        .floating-donation {
+            position: fixed;
+            left: 20px;  /* Changed from right to left */
+            bottom: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        /* Donation button style */
+        .donation-button {
+            width: 60px;
+            height: 60px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .donation-button:hover {
+            background-color: #ff5252;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tooltip style - now positioned to the right of the button */
+        .donation-tooltip {
+            position: absolute;
+            left: 70px;  /* Changed from right to left */
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Adjusted tooltip arrow to point left */
+        .donation-tooltip::after {
+            content: "";
+            position: absolute;
+            right: 100%;  /* Changed from left to right */
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #333 transparent transparent;  /* Adjusted arrow direction */
+        }
+
+        .floating-donation:hover .donation-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="mainNav">
+        <div class="nav-container" style="margin-left: 2%;">
+            
+            <a href="#" class="logo">  <img src="Images/logo (2).jpg " height="100px" width="100px"  alt="Mthombo' Ngashi Logo"></a>
+            <ul class="nav-links">
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="Our work.html">OUR PROGRAMS</a></li>
+                <li><a href="About-us.html">ABOUT</a></li>
+                <li><a href="Blog.html">BLOG</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="logo"></div>
+            <div class="tagline">Donate @ better world</div>
+            <div class="divider"></div>
+            <h1 class="display-4 fw-bold mb-4">Volunteer With Us</h1>
+            <p class="lead mb-5">Join our mission to create positive change in our community</p>
+            <a href="#opportunities" class="btn btn-danger btn-lg px-5 py-3 fw-bold">View Opportunities <i class="fas fa-hands-helping ms-2"></i></a>
+        </div>
+    </section>
+
+    <!-- Volunteer Opportunities -->
+    <section id="opportunities" class="container mb-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Current Volunteer Opportunities</h2>
+            <p class="lead">Find the perfect way to contribute your time and talents</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Become a Volunteer -->
+            <div class="col-md-4">
+                <div class="opportunity-card card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-hands-helping volunteer-icon"></i>
+                        <h3>Become a Volunteer</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">General Volunteering</h5>
+                        <p class="card-text">Join our team of dedicated volunteers helping with various programs and events throughout the year.</p>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Flexible scheduling</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Training provided</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Various roles available</li>
+                        </ul>
+                        <button class="btn btn-volunteer w-100" data-bs-toggle="modal" data-bs-target="#volunteerModal">
+                            <i class="fas fa-user-plus me-2"></i> Sign Up
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dance & Music -->
+            <div class="col-md-4">
+                <div class="opportunity-card card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-music volunteer-icon"></i>
+                        <h3>Dance & Music</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Arts Program Volunteers</h5>
+                        <p class="card-text">Share your artistic talents with our community through our dance and music programs.</p>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Teach classes</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Perform at events</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Help with productions</li>
+                        </ul>
+                        <button class="btn btn-volunteer w-100" data-bs-toggle="modal" data-bs-target="#artsModal">
+                            <i class="fas fa-user-plus me-2"></i> Sign Up
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Office in Conference -->
+            <div class="col-md-4">
+                <div class="opportunity-card card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-briefcase volunteer-icon"></i>
+                        <h3>Office in Conference</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Administrative Support</h5>
+                        <p class="card-text">Help with office tasks, event planning, and conference organization.</p>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Weekday availability</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Training provided</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Various skill levels</li>
+                        </ul>
+                        <button class="btn btn-volunteer w-100" data-bs-toggle="modal" data-bs-target="#officeModal">
+                            <i class="fas fa-user-plus me-2"></i> Sign Up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5">Volunteer Impact</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="impact-number">500+</div>
+                    <p>Active Volunteers</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="impact-number">10,000</div>
+                    <p>Hours Contributed Annually</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="impact-number">100%</div>
+                    <p>Of Volunteers Would Recommend Us</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Volunteer Stories</h2>
+            <p class="lead">Hear from people who volunteer with us</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card testiomonial-card h-100 p-4">
+                    <blockquote class="blockquote mb-0">
+                        <p>"Volunteering with TheChairly has been one of the most rewarding experiences of my life. I've met amazing people and made a real difference."</p>
+                        <footer class="blockquote-footer mt-3">Sarah Johnson, 2 years volunteering</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card testiomonial-card h-100 p-4">
+                    <blockquote class="blockquote mb-0">
+                        <p>"Teaching dance classes through TheChairly's program has allowed me to share my passion while helping others discover the joy of movement."</p>
+                        <footer class="blockquote-footer mt-3">Michael Chen, Dance Volunteer</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card testiomonial-card h-100 p-4">
+                    <blockquote class="blockquote mb-0">
+                        <p>"I help with office administration, and the flexibility allows me to contribute while balancing my full-time job. The team is wonderful to work with."</p>
+                        <footer class="blockquote-footer mt-3">Robert Williams, Office Volunteer</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="faq-item mb-4">
+                    <div class="faq-question">How much time do I need to commit?</div>
+                    <p>We have opportunities with varying time commitments, from one-time events to regular weekly shifts. Most volunteers contribute 4-8 hours per month.</p>
+                </div>
+                
+                <div class="faq-item mb-4">
+                    <div class="faq-question">Do I need special skills or experience?</div>
+                    <p>Most positions don't require special skills - we provide training. Some roles (like teaching dance) may require relevant experience.</p>
+                </div>
+                
+                <div class="faq-item mb-4">
+                    <div class="faq-question">Can I volunteer as a group?</div>
+                    <p>Yes! We welcome corporate groups, student organizations, and other teams. Contact us to arrange group volunteering opportunities.</p>
+                </div>
+                
+                <div class="faq-item mb-4">
+                    <div class="faq-question">Is there an age requirement?</div>
+                    <p>Most opportunities are for ages 16+. We have some youth programs for ages 12-15 with parental supervision.</p>
+                </div>
+                
+                <div class="faq-item mb-4">
+                    <div class="faq-question">How do I get started?</div>
+                    <p>Simply click the "Sign Up" button on any opportunity that interests you, or contact our volunteer coordinator at volunteers@thechairly.org.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="bg-light py-5">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">Ready to Make a Difference?</h2>
+            <p class="lead mb-4">Join our community of volunteers today</p>
+            <a href="#opportunities" class="btn btn-danger btn-lg px-5 py-3 fw-bold">View Opportunities <i class="fas fa-hands-helping ms-2"></i></a>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+
+    <script>
+        // Optional JavaScript for enhanced behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappBtn = document.querySelector('.whatsapp-float');
+            
+            // Pause animation when hovering
+            whatsappBtn.addEventListener('mouseenter', function() {
+                this.style.animationPlayState = 'paused';
+            });
+            
+            whatsappBtn.addEventListener('mouseleave', function() {
+                this.style.animationPlayState = 'running';
+            });
+            
+            // Hide/show based on scroll direction (optional)
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    whatsappBtn.style.transform = 'translateY(20px)';
+                } else {
+                    // Scrolling up
+                    whatsappBtn.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+        });
+    </script>
+
+    
+
+    <!-- Floating donation button -->
+    <div class="floating-donation">
+           <a href="Donation.html"  button class="donation-button" onclick="donate()">❤️</button></a>
+        <div class="donation-tooltip">Donate for our people!</div>
+    </div>
+
+    <script>
+        // Function to handle donation button click
+        function donate() {
+            alert('Thank you for your support! Redirecting to donation page...');
+            // Replace with your actual donation link
+            // window.location.href = 'https://yourwebsite.com/donate';
+        }
+
+        // Optional: Make the button more dynamic
+        document.querySelector('.donation-button').addEventListener('mouseenter', function() {
+            // You can add additional effects here
+        });
+
+        document.querySelector('.donation-button').addEventListener('mouseleave', function() {
+            // Reset effects here
+        });
+
+        // Optional: Add click animation
+        document.querySelector('.donation-button').addEventListener('click', function() {
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
+        });
+    </script>
+  <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo and About -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <img src="Images/logo (2).jpg" alt="Company Logo"  class="footer-logo">
+                    <p>Empowering communities through sustainable development initiatives since 2010. Our mission is to create lasting positive change.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Programs -->
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="footer-heading" style=" font-family:  Times New Roman;">Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="">Food Security</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Women Empowerment</a></li>
+                        <li><a href="#">Art & Music</a></li>
+                     
+                    </ul>
+                </div>
+                <!-- Programs -->
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Clean Water</a></li>
+                        <li><a href="#">Women Empowerment</a></li>
+                        <li><a href="#">Disaster Relief</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                
+                           <!-- Newsletter -->
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="footer-heading" style=" font-family:  Times New Roman;">Newsletter</h4>
+                    <p>Subscribe to our newsletter to receive updates on our projects and impact.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <div class="mt-4">
+                        <h4 class="footer-heading" style=" font-family:  Times New Roman;">Contact Us</h4>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Jeppestown Train Station, John Page and Main Street in Jeppestown, Johannesburg</p>
+                        <p><i class="fas fa-phone me-2"></i> 073 319 0053/ 065 694 1153</p>
+                        <p><i class="fas fa-envelope me-2"></i>admin@mthombngashi.co.za</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Footer Bottom -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-bottom">
+                        <p class="mb-0">&copy; 2025 . All Rights Reserved. | <a href="#" style="color: #3498db;">Privacy Policy</a> | <a href="#" style="color: #3498db;">Terms of Service</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const slides = document.querySelectorAll('.slide');
+            const controlBtns = document.querySelectorAll('.control-btn');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            const nav = document.getElementById('mainNav');
+            
+            let currentSlide = 0;
+            const slideCount = slides.length;
+            
+            // Initialize slider
+            function goToSlide(index) {
+                if (index < 0) index = slideCount - 1;
+                if (index >= slideCount) index = 0;
+                
+                slider.style.transform = `translateX(-${index * 100}%)`;
+                currentSlide = index;
+                
+                // Update control buttons
+                controlBtns.forEach((btn, i) => {
+                    btn.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            // Auto slide change
+            let slideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+            
+            // Control buttons
+            controlBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    goToSlide(index);
+                    slideInterval = setInterval(() => {
+                        goToSlide(currentSlide + 1);
+                    }, 5000);
+                });
+            });
+            
+            // Navigation arrows
+            prevBtn.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(currentSlide - 1);
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(currentSlide + 1);
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+            
+            // Pause auto-slide when hovering over slider
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            });
+            
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(slideInterval);
+            }, {passive: true});
+            
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, 5000);
+            }, {passive: true});
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    goToSlide(currentSlide + 1); // Swipe left
+                }
+                if (touchEndX > touchStartX + 50) {
+                    goToSlide(currentSlide - 1); // Swipe right
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
